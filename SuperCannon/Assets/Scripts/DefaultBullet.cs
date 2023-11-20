@@ -17,9 +17,10 @@ public class DefaultBullet : MonoBehaviour
     }
     protected virtual void Start()
     {     
-        Vector2 bulletDiraction = new Vector2(GameData.MousePos.x, GameData.MousePos.y + 5f);
-        bulletDiraction.Normalize();
-        GetComponent<Rigidbody2D>().velocity = bulletDiraction * speed;
+        //Vector2 bulletDiraction = new Vector2(GameData.MousePos.x, GameData.MousePos.y + 5f);
+        //bulletDiraction.Normalize();
+        
+        GetComponent<Rigidbody2D>().velocity = transform.up * speed;
     }
 
     private void OnBecameInvisible()
