@@ -8,7 +8,8 @@ public class CannonFIring : MonoBehaviour
     {
         if (mybullet != null)
         {
-            Instantiate(mybullet, this.transform.position, Quaternion.identity);
+          //  Instantiate(mybullet, this.transform.position, Quaternion.identity);
+            Instantiate(mybullet, this.transform.position, this.transform.rotation);
         }
     }
 

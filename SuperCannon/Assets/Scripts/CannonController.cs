@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CannonController : MonoBehaviour
@@ -10,6 +11,10 @@ public class CannonController : MonoBehaviour
 
     [SerializeField] GameObject bullet1Prefab;
     [SerializeField] GameObject bullet2Prefab;
+    [SerializeField] float bulletFiringPeriod;
+
+    Coroutine myFiringCoroutine1;
+    Coroutine myFiringCoroutine2;   
 
     CannonFIring _firingInsatance;
 
@@ -27,13 +32,34 @@ public class CannonController : MonoBehaviour
         
         if(Input.GetMouseButtonDown(0))
         {
-            _firingInsatance.Firecannon(bullet1Prefab);
+
+            if (myFiringCoroutine1 ==null) myFiringCoroutine1 = StartCoroutine(Firecontinously(bullet1Prefab));
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopCoroutine(myFiringCoroutine1);
+            myFiringCoroutine1 = null;
         }
 
 
         if (Input.GetMouseButtonDown(1))
         {
-            _firingInsatance.Firecannon(bullet2Prefab);
+            if (myFiringCoroutine2 == null) myFiringCoroutine2= StartCoroutine(Firecontinously(bullet2Prefab));
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            StopCoroutine(myFiringCoroutine2);
+            myFiringCoroutine2 =null;
+        }
+    }
+
+    IEnumerator Firecontinously(GameObject mybulletPrefab) 
+    { 
+        while (true)
+        {
+            _firingInsatance.Firecannon(mybulletPrefab);
+            yield return new WaitForSeconds(bulletFiringPeriod);
+
         }
     }
 
@@ -47,4 +73,6 @@ public class CannonController : MonoBehaviour
         newrotation.w = Mathf.Clamp(newrotation.w, clampRoationLow.w, clampRoationHigh.w);
         this.transform.rotation = Quaternion.Slerp(this.transform.rotation, newrotation, Time.deltaTime * 3f);
     }
+
+    
 }
