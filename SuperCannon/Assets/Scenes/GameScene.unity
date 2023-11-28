@@ -377,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet1Prefab: {fileID: 7923467207770082811, guid: 921c129e7999b06418beb12d55e974c2, type: 3}
   bullet2Prefab: {fileID: 1903118552705610756, guid: f889f7b4e76c77b4cb07e5937599028e, type: 3}
+  bulletFiringPeriod: 1
 --- !u!70 &1925445763
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

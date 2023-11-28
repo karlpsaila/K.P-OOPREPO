@@ -18,6 +18,8 @@ public class CannonController : MonoBehaviour
 
     CannonFIring _firingInsatance;
 
+    public ObjectPooling bullet1pool , bullet2pool;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,9 @@ public class CannonController : MonoBehaviour
         
         if(Input.GetMouseButtonDown(0))
         {
+            GameObject mybullet = bullet1pool.GetPooledObject();
 
-            if (myFiringCoroutine1 ==null) myFiringCoroutine1 = StartCoroutine(Firecontinously(bullet1Prefab));
+            if (myFiringCoroutine1 ==null) myFiringCoroutine1 = StartCoroutine(Firecontinously(bullet1pool));
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -42,22 +45,25 @@ public class CannonController : MonoBehaviour
         }
 
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))   
         {
-            if (myFiringCoroutine2 == null) myFiringCoroutine2= StartCoroutine(Firecontinously(bullet2Prefab));
+            GameObject mybullet = bullet2pool.GetPooledObject();
+
+            if (myFiringCoroutine2 == null) myFiringCoroutine2 = StartCoroutine(Firecontinously(bullet2pool));
         }
         if (Input.GetMouseButtonUp(1))
         {
             StopCoroutine(myFiringCoroutine2);
-            myFiringCoroutine2 =null;
+            myFiringCoroutine2 = null;
         }
     }
 
-    IEnumerator Firecontinously(GameObject mybulletPrefab) 
+    IEnumerator Firecontinously(ObjectPooling myobjectPool) 
     { 
         while (true)
         {
-            _firingInsatance.Firecannon(mybulletPrefab);
+            GameObject mybullet = myobjectPool.GetPooledObject();
+            _firingInsatance.Firecannon(mybullet);
             yield return new WaitForSeconds(bulletFiringPeriod);
 
         }

@@ -14,18 +14,17 @@ public class DefaultBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
+
     }
-    protected virtual void Start()
-    {     
-        //Vector2 bulletDiraction = new Vector2(GameData.MousePos.x, GameData.MousePos.y + 5f);
-        //bulletDiraction.Normalize();
-        
+    protected virtual void OnEnable()
+    {
         GetComponent<Rigidbody2D>().velocity = transform.up * speed;
     }
 
     private void OnBecameInvisible()
     {
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject); insted of destoy we set the bullet to inactive (goes back to the pool)
+        this.gameObject.SetActive(false);
     }
 
 
