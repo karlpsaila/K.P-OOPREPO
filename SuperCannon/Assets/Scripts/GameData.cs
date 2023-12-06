@@ -4,10 +4,16 @@ using UnityEngine;
 
 public abstract class GameData : MonoBehaviour
 {
-    private static Vector3 _mousePos, _Xmin, _Xmax, _Ymin, _Ymax;
-
     private static Vector3 mousePos;
     private static float _padding = 0;
+    private static int _playerHealth = 10;
+
+    public static int PlayerHealth
+    { 
+        get { return _playerHealth; } 
+        set { _playerHealth = value; }
+    
+    }
 
     public static Vector3 MousePos
     {
