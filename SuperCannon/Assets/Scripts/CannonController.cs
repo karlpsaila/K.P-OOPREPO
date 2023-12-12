@@ -9,6 +9,7 @@ public class CannonController : MonoBehaviour
 
     Quaternion clampRoationLow, clampRoationHigh;
 
+
     [SerializeField] GameObject bullet1Prefab;
     [SerializeField] GameObject bullet2Prefab;
     [SerializeField] float bulletFiringPeriod;

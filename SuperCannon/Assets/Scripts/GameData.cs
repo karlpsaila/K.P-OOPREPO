@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public abstract class GameData : MonoBehaviour
@@ -7,6 +8,7 @@ public abstract class GameData : MonoBehaviour
     private static Vector3 mousePos;
     private static float _padding = 0;
     private static int _playerHealth = 10;
+    private static int _score = 0;
 
     public static int PlayerHealth
     { 
@@ -14,6 +16,14 @@ public abstract class GameData : MonoBehaviour
         set { _playerHealth = value; }
     
     }
+
+    public static int Score
+    {
+        get { return _score; }
+        set { _score = value; }
+
+    }
+
 
     public static Vector3 MousePos
     {
